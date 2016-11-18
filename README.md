@@ -1,9 +1,15 @@
 MS Edge issue
 ===========
 
-Run it in command line with:
+To run development mode use the Maven Plugin for GWT, first prepare the webapp:
 
-`mvn clean gwt:run`
+`mvn war:exploded -Dgwt.skipCompilation=true`
+
+then
+
+`mvn gwt:devmode`
+
+To compile your project for deployment, just type `mvn clean package`.
 
 Open **MS Edge** browser to experience the bug.
 

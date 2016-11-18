@@ -17,6 +17,8 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
 
+        <gwt.bindAddress>0.0.0.0</gwt.bindAddress>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -35,11 +37,6 @@
     <dependencies>
         <dependency>
             <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
             <scope>provided</scope>
         </dependency>
@@ -55,9 +52,9 @@
 
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>net.ltgt.gwt.maven</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
-                <version>${gwt.version}</version>
+                <version>1.0-rc-6</version>
                 <executions>
                     <execution>
                         <goals>
@@ -66,12 +63,21 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <copyWebapp>true</copyWebapp>
-                    <runTarget>/</runTarget>
+                    <moduleName>com.Edge</moduleName>
                     <sourceLevel>auto</sourceLevel>
-                    <modules>
-                        <module>com.Edge</module>
-                    </modules>
+                    <startupUrls>
+                        <startupUrl>/</startupUrl>
+                    </startupUrls>
+                    <codeserverArgs>
+                        <arg>-bindAddress</arg>
+                        <arg>${gwt.bindAddress}</arg>
+                    </codeserverArgs>
+                    <devmodeArgs>
+                        <arg>-bindAddress</arg>
+                        <arg>${gwt.bindAddress}</arg>
+                    </devmodeArgs>
+                    <warDir>${project.build.directory}/${project.build.finalName}</warDir>
+                    <classpathScope>compile+runtime</classpathScope>
                 </configuration>
             </plugin>
             <plugin>
